@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //SCREENS
 import HomeScreen from '../Screens/HomeScreen';
 import HelpScreen from '../Screens/HelpScreen';
@@ -13,8 +13,12 @@ import TabsContainer from './TabsContainer';
 const CustomHeaderButton = (props) => (
     <HeaderButton {...props} IconComponent={Icon} iconSize={24} color="black"></HeaderButton>
 );
-const Icon = (props) => (
-    <Ionicons name="help-circle-outline" size={props.size} color={props.color} />
+const Icon = props => (
+  <MaterialIcons
+    name="supervised-user-circle"
+    size={props.size}
+    color={props.color}
+  />
 );
 
 const Stacks = createNativeStackNavigator();
@@ -30,30 +34,60 @@ const MainStacks = () => {
 const HomeStacks = () => {
   return (
     <Stacks.Navigator>
-      <Stacks.Screen name="HomeStack" component={HomeScreen}
-      options={({ navigation }) => ({
-        headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={CustomHeaderButton} navigation>
-            <Item
-              title="help"  
-              iconName="help-circle"
-              onPress={() => navigation.navigate('BantuanStack')}
-            />
-          </HeaderButtons>
-        ),
-        title: "Home"
-      })}/>
-      <Stacks.Screen name="BantuanStack" component={HelpScreen} options={{title: "Bantuan"}}/>
-    </Stacks.Navigator>    
-  )
+      <Stacks.Screen
+        name="HomeStack"
+        component={HomeScreen}
+        options={({navigation}) => ({
+          headerRight: () => (
+            <HeaderButtons
+              HeaderButtonComponent={CustomHeaderButton}
+              navigation>
+              <Item
+                title="help"
+                iconName="help-circle"
+                onPress={() => navigation.navigate('BantuanStack')}
+              />
+            </HeaderButtons>
+          ),
+          title: 'Home',
+          headerStyle: {
+            backgroundColor: '#FF6700',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        })}
+      />
+      <Stacks.Screen
+        name="BantuanStack"
+        component={HelpScreen}
+        options={{
+          title: 'Bantuan',
+          headerStyle: {
+            backgroundColor: '#FF6700',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+    </Stacks.Navigator>
+  );
 }
 
 const ProfileStacks = () => {
   return (
-    <Stacks.Navigator>
-      <Stacks.Screen name="ProfileStack" component={ProfileScreen} options={{title: "Profile"}}/>
-    </Stacks.Navigator>    
-  )
+    <Stacks.Navigator screenOptions={{headerShown: false}}>
+      <Stacks.Screen
+        name="ProfileStack"
+        component={ProfileScreen}
+        options={{title: 'Profile'}}
+        
+      />
+    </Stacks.Navigator>
+  );
 }
 
 export {HomeStacks, ProfileStacks, MainStacks};

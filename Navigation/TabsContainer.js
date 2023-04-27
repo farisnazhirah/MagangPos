@@ -30,9 +30,9 @@ const TabsContainer = () => {
                 })
             }>     
             <Tabs.Screen name="HomeTab" component={HomeStacks} 
-            options={({ route }) => ({ 
-                tabBarStyle: {display:getRouteName(route)},
-                tabBarLabel: "Home"
+                options={({ route }) => ({ 
+                    tabBarStyle: {display:getRouteName(route)},
+                    tabBarLabel: "Home"
                 })}/>
             <Tabs.Screen name="ProfileTab" component={ProfileStacks} options={{ tabBarLabel: "Profile"}}/>
                 </Tabs.Navigator>
