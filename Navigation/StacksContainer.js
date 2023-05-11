@@ -7,6 +7,8 @@ import HomeScreen from '../Screens/HomeScreen';
 import HelpScreen from '../Screens/HelpScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
 import TabsContainer from './TabsContainer';
+import LoginScreen from '../Screens/LoginScreen';
+import RegisterScreen from '../Screens/RegisterScreen';
 
 
 // header icon library
@@ -25,10 +27,19 @@ const Stacks = createNativeStackNavigator();
 
 const MainStacks = () => {
   return (
-    <Stacks.Navigator screenOptions={{headerShown: false}}>
-      <Stacks.Screen name="Tabs" component={TabsContainer}/>
+    <Stacks.Navigator>
+      <Stacks.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
+      <Stacks.Screen
+        name="RegisterScreen"
+        component={RegisterScreen}
+        options={{
+          title: ''
+        }}
+      />
+
+      {/* <Stacks.Screen name="Tabs" component={TabsContainer} /> */}
     </Stacks.Navigator>
-  )
+  );
 }
 
 const HomeStacks = () => {

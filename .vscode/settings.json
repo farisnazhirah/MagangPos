@@ -1,0 +1,16 @@
+{
+    
+    "colorize.colorized_variables": [ 
+        "CSS"
+    ],
+    "colorize.languages": [
+        "typescript", 
+        "javascript", 
+        "css", 
+        "scss"],
+    "colorize.colorized_colors": [
+        "HEXA",
+        "BROWSERS_COLORS"
+  ]
+
+}
