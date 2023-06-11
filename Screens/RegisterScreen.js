@@ -3,25 +3,15 @@ import {View, StyleSheet} from 'react-native';
 import CustomInput from '../Components/CustomInputs/CustomInput';
 import CustomButton from '../Components/CustomButtons/CustomButton';
 import {Text} from 'react-native-elements';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
-import {FIREBASE_auth} from '../Config/FirebaseConfig';
+import useAuthStore from '../State/AuthStore';
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = FIREBASE_auth;
+  const {register} = useAuthStore()
 
   const handleRegister = async () => {
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential)=>{
-      const user = userCredential.user
-      console.log('Registered with: ', user.email)
-      alert('register berhasil! silahkan ke halaman login');
-    })
-    .catch((error)=>{
-      console.log(error)
-      alert('register gagal!: ' + error.message)
-    })
+    register(email, password)
   };
 
   const onPolicyPressed = () => {

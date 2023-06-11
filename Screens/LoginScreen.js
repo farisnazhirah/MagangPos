@@ -3,13 +3,11 @@ import {View, Image, StyleSheet, useWindowDimensions, Text} from 'react-native';
 import CustomInput from '../Components/CustomInputs/CustomInput';
 import CustomButton from '../Components/CustomButtons/CustomButton';
 import {signInWithEmailAndPassword} from 'firebase/auth';
-import {FIREBASE_auth} from '../Config/FirebaseConfig';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {height} = useWindowDimensions();
-  const auth = FIREBASE_auth;
 
   const handleLogin = async () => {
     signInWithEmailAndPassword(auth, email, password)
