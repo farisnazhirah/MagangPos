@@ -2,20 +2,29 @@ import React, {useState} from 'react';
 import {View, Image, StyleSheet, useWindowDimensions, Text} from 'react-native';
 import CustomInput from '../Components/CustomInputs/CustomInput';
 import CustomButton from '../Components/CustomButtons/CustomButton';
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import {FIREBASE_auth} from '../Config/FirebaseConfig';
 
 const LoginScreen = ({navigation}) => {
-  const {email, setEmail} = useState(null);
-  const {password, setPassword} = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const {height} = useWindowDimensions();
+  const auth = FIREBASE_auth;
 
-  const onLoginPressed = () => {
-    console.warn('Login');
+  const handleLogin = async () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        console.log('Logged In with: ', user.email);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('login gagal!: ' + error.message);
+      });
   };
+
   const onForgotPasswordPressed = () => {
     console.warn('Lupa Password?');
-  };
-  const onSignUpPressed = () => {
-    console.warn('Buat Akun');
   };
 
   return (
@@ -28,20 +37,22 @@ const LoginScreen = ({navigation}) => {
       <CustomInput
         placeholder="Email"
         value={email}
-        setValue={setEmail}
+        onChangeText={text => setEmail(text)}
       />
       <CustomInput
         placeholder="Password"
         value={password}
-        setValue={setPassword}
+        onChangeText={text => setPassword(text)}
         secureTextEntry={true}
       />
 
-      <CustomButton text={'Login'} onPress={onLoginPressed} />
+      <CustomButton text={'Login'} onPress={handleLogin} />
 
       <Text style={styles.text}>
         Belum punya akun?{' '}
-        <Text style={styles.link} onPress={() => navigation.navigate('RegisterScreen')}>
+        <Text
+          style={styles.link}
+          onPress={() => navigation.navigate('RegisterScreen')}>
           Klik
         </Text>{' '}
         disini

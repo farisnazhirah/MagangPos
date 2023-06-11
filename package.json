@@ -10,11 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-native-masked-view/masked-view": "^0.2.8",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "antd-mobile": "^5.29.1",
+    "firebase": "^9.22.0",
     "galio-framework": "^0.8.0",
     "react": "18.2.0",
     "react-native": "0.71.3",
@@ -25,7 +27,8 @@
     "react-native-screens": "^3.20.0",
     "react-native-vector-icons": "^9.2.0",
     "react-navigation-header-buttons": "^10.0.0",
-    "react-router-native": "^6.9.0"
+    "react-router-native": "^6.9.0",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

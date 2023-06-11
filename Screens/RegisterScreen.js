@@ -3,45 +3,54 @@ import {View, StyleSheet} from 'react-native';
 import CustomInput from '../Components/CustomInputs/CustomInput';
 import CustomButton from '../Components/CustomButtons/CustomButton';
 import {Text} from 'react-native-elements';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {FIREBASE_auth} from '../Config/FirebaseConfig';
 
 const RegisterScreen = () => {
-  const {username, setUsername} = useState('');
-  const {email, setEmail} = useState('');
-  const {password, setPassword} = useState('');
-  const {repeatPassword, setPasswordRepeat} = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const auth = FIREBASE_auth;
 
-  const onRegisterPressed = () => {
-    console.warn('register');
+  const handleRegister = async () => {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential)=>{
+      const user = userCredential.user
+      console.log('Registered with: ', user.email)
+      alert('register berhasil! silahkan ke halaman login');
+    })
+    .catch((error)=>{
+      console.log(error)
+      alert('register gagal!: ' + error.message)
+    })
   };
-  const onForgotPasswordPressed = () => {
-    console.warn('Lupa Password?');
-  };
-  const onSignUpPressed = () => {
-    console.warn('Buat Akun');
+
+  const onPolicyPressed = () => {
+    console.warn('Syarat dan Ketentuan');
   };
 
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Buat Akun</Text>
       <CustomInput
-        placeholder="Username"
-        value={username}
-        setValue={setUsername}
+        placeholder="E-mail"
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
-      <CustomInput placeholder="E-mail" value={email} setValue={setEmail} />
       <CustomInput
         placeholder="Password"
         value={password}
-        setValue={setPassword}
+        onChangeText={text => setPassword(text)}
         secureTextEntry={true}
       />
-      
-      <CustomButton text={'Register'} onPress={onRegisterPressed} />
+
+      <CustomButton text={'Register'} onPress={handleRegister} />
       <Text style={styles.text}>
         Dengan mendaftar, Anda mengonfirmasi bahwa Anda setuju dengan{' '}
-        <Text style={styles.link}>Syarat & Ketentuan</Text> POSPAY MOBILE
+        <Text style={styles.link} onPress={onPolicyPressed}>
+          Syarat & Ketentuan
+        </Text>{' '}
+        POSPAY MOBILE
       </Text>
-      
     </View>
   );
 };
@@ -62,14 +71,14 @@ const styles = StyleSheet.create({
     color: 'black',
     margin: 10,
   },
-  text:{
-    color:'gray',
+  text: {
+    color: 'gray',
     marginVertical: 10,
   },
-  link:{
-    color:'#FF6700',
-    textDecorationLine:'underline'
-  }
+  link: {
+    color: '#FF6700',
+    textDecorationLine: 'underline',
+  },
 });
 
 export default RegisterScreen;
