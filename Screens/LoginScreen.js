@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Image, StyleSheet, useWindowDimensions, Text} from 'react-native';
 import CustomInput from '../Components/CustomInputs/CustomInput';
 import CustomButton from '../Components/CustomButtons/CustomButton';
-import {signInWithEmailAndPassword} from 'firebase/auth';
 import useAuthStore from '../State/AuthStore';
 
 const LoginScreen = ({navigation}) => {
