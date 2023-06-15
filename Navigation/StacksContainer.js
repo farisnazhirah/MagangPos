@@ -9,6 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //SCREENS
 import HomeScreen from '../Screens/HomeScreen';
 import HelpScreen from '../Screens/HelpScreen';
+import DiscussionScreen from '../Screens/DiscussionScreen'
 import ProfileScreen from '../Screens/ProfileScreen';
 import TabsContainer from './TabsContainer';
 
@@ -75,6 +76,16 @@ const HomeStacks = () => {
           },
         }}
       />
+      <Stacks.Screen
+        name="DiscussionStack"
+        component={DiscussionScreen}
+        options={{
+          title: 'Diskusi',
+          headerStyle: {
+            backgroundColor: '#FF6700',
+          },
+          headerTintColor: '#fff',
+        }}></Stacks.Screen>
     </Stacks.Navigator>
   );
 };

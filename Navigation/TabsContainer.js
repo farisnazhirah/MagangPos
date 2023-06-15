@@ -39,9 +39,10 @@ const TabsContainer = () => {
     )
 }
 
+//Hiding Tab Nav on a specific stack screen
 const getRouteName = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route)
-    if (routeName?.includes("Bantuan")){
+    if (routeName?.includes("Bantuan") || routeName?.includes("Discussion")){
         return 'none'
     }
     return 'flex'

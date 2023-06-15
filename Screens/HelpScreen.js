@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {
   View,
@@ -6,6 +7,7 @@ import {
   StyleSheet,
   Platform,
   UIManager,
+  TouchableOpacity,
 } from 'react-native';
 import {AccordionList} from 'react-native-accordion-list-view';
 
@@ -24,58 +26,81 @@ const DATA = [
   },
 ];
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: '2%',
-    paddingHorizontal: '3%',
-    height: '100%',
-  },
-});
-
-function HelpScreen() {
+const HelpScreen = () => {
+  const navigation = useNavigation()
   useEffect(() => {
-    if (Platform.OS === 'android') {
-      if (UIManager.setLayoutAnimationEnabledExperimental) {
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-      }
+    if (
+      Platform.OS === 'android' &&
+      UIManager.setLayoutAnimationEnabledExperimental
+    ) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
     }
   }, []);
+
+  const renderTitle = item => <Text style={styles.title}>{item.title}</Text>;
+  const renderBody = item => <Text style={styles.body}>{item.body}</Text>;
+
   return (
     <>
       <SafeAreaView>
-        <Text
-          style={{
-            marginTop: 10,
-            marginHorizontal: 22,
-            fontSize: 16,
-            fontWeight: 'bold',
-          }}>
-          Pertanyaan Umum
-        </Text>
+        <Text style={styles.heading}>Hubungi Kami</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('DiscussionStack')}>
+            <Text style={styles.buttonText}>CHAT</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.heading}>Pertanyaan Umum</Text>
         <View style={styles.container}>
           <AccordionList
             data={DATA}
-            customTitle={item => (
-              <Text
-                style={{
-                  marginHorizontal: 10,
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                }}>
-                {item.title}
-              </Text>
-            )}
-            customBody={item => (
-              <Text style={{marginHorizontal: 10}}>{item.body}</Text>
-            )}
+            customTitle={renderTitle}
+            customBody={renderBody}
             animationDuration={400}
-            expandMultiple={true}
           />
         </View>
       </SafeAreaView>
-      
     </>
   );
-}
+};
 
 export default HelpScreen;
+
+const styles = StyleSheet.create({
+  heading: {
+    marginTop: 10,
+    marginHorizontal: 22,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  container: {
+    paddingVertical: '2%',
+    paddingHorizontal: '5%',
+    height: '100%',
+  },
+  title: {
+    marginHorizontal: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  body: {
+    marginHorizontal: 10,
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#D9D9D9',
+    width: '90%',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+});
