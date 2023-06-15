@@ -7,9 +7,9 @@ const HomeScreen = () => {
       <Text
         onPress={() => alert('This is Profile Screen.')}
         style={{fontSize: 26, fontWeight: 'bold'}}>
-        Welcome, User
+        Selamat Datang
       </Text>
-      <Text>Go to Profile to see your Email!</Text>
+      <Text>Pergi ke Profile untuk melihat Email-mu!</Text>
     </View>
   );
 };
