@@ -1,6 +1,10 @@
-import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  HeaderButton,
+  HeaderButtons,
+  Item,
+} from 'react-navigation-header-buttons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //SCREENS
 import HomeScreen from '../Screens/HomeScreen';
@@ -8,18 +12,12 @@ import HelpScreen from '../Screens/HelpScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
 import TabsContainer from './TabsContainer';
 
-
-
 // header icon library
-const CustomHeaderButton = (props) => (
-    <HeaderButton {...props} IconComponent={Icon} iconSize={24} color="black"></HeaderButton>
+const CustomHeaderButton = props => (
+  <HeaderButton {...props} IconComponent={Icon} iconSize={26} color="black" />
 );
 const Icon = props => (
-  <MaterialIcons
-    name="supervised-user-circle"
-    size={props.size}
-    color={props.color}
-  />
+  <MaterialIcons name="contact-support" size={props.size} color="white" />
 );
 
 const Stacks = createNativeStackNavigator();
@@ -27,10 +25,14 @@ const Stacks = createNativeStackNavigator();
 const MainStacks = () => {
   return (
     <Stacks.Navigator>
-      <Stacks.Screen name="Tabs" component={TabsContainer} options={{headerShown:false}} />
+      <Stacks.Screen
+        name="Tabs"
+        component={TabsContainer}
+        options={{headerShown: false}}
+      />
     </Stacks.Navigator>
   );
-}
+};
 
 const HomeStacks = () => {
   return (
@@ -44,8 +46,7 @@ const HomeStacks = () => {
               HeaderButtonComponent={CustomHeaderButton}
               navigation>
               <Item
-                title="help"
-                iconName="help-circle"
+                iconName="help"
                 onPress={() => navigation.navigate('BantuanStack')}
               />
             </HeaderButtons>
@@ -76,7 +77,7 @@ const HomeStacks = () => {
       />
     </Stacks.Navigator>
   );
-}
+};
 
 const ProfileStacks = () => {
   return (
@@ -84,10 +85,10 @@ const ProfileStacks = () => {
       <Stacks.Screen
         name="ProfileStack"
         component={ProfileScreen}
-        options={{title: 'Profile'}}      
+        options={{title: 'Profile'}}
       />
     </Stacks.Navigator>
   );
-}
+};
 
 export {HomeStacks, ProfileStacks, MainStacks};
