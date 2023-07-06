@@ -1,6 +1,9 @@
 # OSX
 #
 .DS_Store
+S
+# Environment variables
+.env
 
 # Xcode
 #

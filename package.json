@@ -16,6 +16,7 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "antd-mobile": "^5.29.1",
+    "dotenv": "^16.3.1",
     "firebase": "^9.22.0",
     "galio-framework": "^0.8.0",
     "react": "18.2.0",
