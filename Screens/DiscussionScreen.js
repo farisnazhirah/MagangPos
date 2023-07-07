@@ -8,7 +8,6 @@ import {
   TouchableWithoutFeedback,
   FlatList,
   Dimensions,
-  Alert,
   StyleSheet,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
